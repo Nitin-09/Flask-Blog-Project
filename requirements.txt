@@ -3,6 +3,7 @@ flask_sqlalchemy
 WTForms
 passlib
 gunicorn
+cx_oracle
 
 
 
