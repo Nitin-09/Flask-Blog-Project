@@ -6,7 +6,7 @@ from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'oracle://hr:hr@127.0.0.1:1521/xe'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 db = SQLAlchemy(app)
 
 
