@@ -1,6 +1,5 @@
 Flask>=1.0.0
-mysqlclient
-flask-mysqldb
+flask_sqlalchemy
 WTForms
 passlib
 
