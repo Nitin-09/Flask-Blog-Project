@@ -37,6 +37,8 @@ class Users(db.Model):
         self.password = password
 
 
+
+
 # Index
 @app.route('/')
 def index():
@@ -88,6 +90,7 @@ class RegisterForm(Form):
 # User Register
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    db.create_all()
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
         name = form.name.data
@@ -108,6 +111,7 @@ def register():
 # User Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    db.create_all()
     if request.method == 'POST':
         username = request.form['username']
         password_candidate = request.form['password']
