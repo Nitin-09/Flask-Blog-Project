@@ -78,10 +78,10 @@ def article(id):
     article = Article.query.get(id)
 
     if article:
-        return render_template('article.html', article=article)
+        return render_template('single-article.html', article=article)
     else:
         msg = 'Article not found'
-        return render_template('article.html', msg=msg)
+        return render_template('single-article.html', msg=msg)
 
 
 # Register Form Class

@@ -1,9 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <div class="jumbotron text-center">
-    <h1>Welcome To FlaskApp</h1>
-    <p class="lead">This aplication built on the Python Flask framework and is the focus for the "Python For Everything..</p>
+  <div class="jumbotron text-center" style="background: transparent;">
+    <h1>Welcome To our BLOG APP</h1>
+    <p class="lead">Welcome to our innovative blog app, skillfully crafted by Team Techie! We are a passionate group of tech enthusiasts dedicated to creating a seamless and engaging reading experience for our users. With our combined expertise in software development and user experience design, we have meticulously designed this app to provide you with a visually appealing and intuitive platform. From the sleek interface to the seamless navigation, every element has been carefully engineered to ensure your utmost satisfaction. Join us on this exciting adventure as we bring you a blog app that reflects our unwavering commitment to technological excellence. Embrace the future of blogging with Team Techie!</p>
     {% if session.logged_in == NULL %}
       <a href="/register" class="btn btn-primary btn-lg">Register</a>
       <a href="/login" class="btn btn-success btn-lg">Login</a>
