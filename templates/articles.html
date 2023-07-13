@@ -1,10 +1,21 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <h1>Articles</h1>
-  <ul class="list-group">
-    {% for article in articles %}
-      <li class="list-group-item"><a href="article/{{article.id}}">{{article.title}}</a></li>
-    {% endfor %}
-  </lu>
+
+<h1 class="heading">Articles</h1>
+<div class="card-container">
+  {% for article in articles %}
+  <div class="card card-1">
+    <div class="card-info">
+      <div class="card-about">
+        <a class="card-tag tag-news">{{ article.category | capitalize }}</a>
+      <div class="card-time">{{ article.create_date | capitalize }}</div>
+      </div>
+      <h1 class="card-title">{{ article.title | capitalize }}</h1>
+      <div class="card-creator">by {{ article.author | capitalize }}</div>
+    </div>
+    <a class="link" href="article/{{article.id}}">Read full article</a>
+  </div>
+  {% endfor %}
+</div>
 {% endblock %}

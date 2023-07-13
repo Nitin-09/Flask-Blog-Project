@@ -1,24 +1,93 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html' %} {% block body %}
+<!-- <h1>Register</h1> -->
+{% from "includes/_formhelpers.html" import render_field %}
+<div class="limiter">
+  <div class="container-login100">
+      <div class="wrap-login100">
+<form class="login100-form login101-form validate-form" method="POST" action="">
+  <span class="login100-form-title p-b-43">
+    Signup to continue
+  </span>
+    <div class="wrap-input100 validate-input">
+        {{render_field(form.name, class="input100")}}
+    </div>
+    <div class="wrap-input100 validate-input">
+        {{render_field(form.email, class_="input100")}}
+    </div>
+    <div class="wrap-input100 validate-input">
+        {{render_field(form.username, class_="input100")}}
+    </div>
+    <div class="wrap-input100 validate-input">
+        {{render_field(form.password, class_="input100")}}
+    </div>
+    <div class="wrap-input100 validate-input">
+        {{render_field(form.confirm, class_="input100")}}
+    </div>
+    <div class="flex-sb-m w-full p-t-3 p-b-32">
 
-{% block body %}
-  <h1>Register</h1>
-  {% from "includes/_formhelpers.html" import render_field %}
-  <form method="POST" action="">
-    <div class="form-group">
-      {{render_field(form.name, class_="form-control")}}
+      <div  class="txt1" >
+
+        <span>Already have an account?</span>
+        <a href="/login"> Login</a>
+      </div>
     </div>
-    <div class="form-group">
-      {{render_field(form.email, class_="form-control")}}
+
+
+    <div class="container-login100-form-btn">
+      <input class="login100-form-btn" type="submit"
+        value='SignUp'>
     </div>
-    <div class="form-group">
-      {{render_field(form.username, class_="form-control")}}
+</form>
+<div class="login100-more" style="background-image: url('../static/bg-01.jpg');">
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- <form class="login100-form login101-form validate-form" method="POST">
+   
+    
+    
+    <div class="wrap-input100 validate-input">
+      <input class="input100" type="text" autocomplete="off" name="Name" class="form-control">
+      <span class="focus-input100"></span>
+      <span class="label-input100">Name</span>
     </div>
-    <div class="form-group">
-      {{render_field(form.password, class_="form-control")}}
+    <div class="wrap-input100 validate-input">
+      <input class="input100" type="email" autocomplete="off" name="email" class="form-control"}>
+      <span class="focus-input100"></span>
+      <span class="label-input100">Email</span>
     </div>
-    <div class="form-group">
-      {{render_field(form.confirm, class_="form-control")}}
+    <div class="wrap-input100 validate-input">
+      <input class="input100" type="text" autocomplete="off" name="username" class="form-control">
+      <span class="focus-input100"></span>
+      <span class="label-input100">Username</span>
     </div>
-    <p><input type="submit" class="btn btn-primary" value="Submit"></p>
-  </form>
+    <div class="wrap-input100 validate-input">
+      <input class="input100" type="password" name="password" autocomplete="off">
+      <span class="focus-input100"></span>
+      <span class="label-input100">Password</span>
+    </div>
+    <div class="wrap-input100 validate-input">
+      <input class="input100" type="password" name="confirm" autocomplete="off">
+      <span class="focus-input100"></span>
+      <span class="label-input100">Confirm Password</span>
+    </div>
+
+    <div class="flex-sb-m w-full p-t-3 p-b-32">
+
+      <div  class="txt1" >
+
+        <span>Already have an account?</span>
+        <a href="/login"> Login</a>
+      </div>
+    </div>
+
+
+    <div class="container-login100-form-btn">
+      <input class="login100-form-btn" type="submit"
+        value='SignUp'>
+    </div>
+  </form> -->
 {% endblock %}

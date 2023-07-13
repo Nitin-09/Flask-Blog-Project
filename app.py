@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
+from datetime import date
 
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
@@ -10,18 +11,26 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 db = SQLAlchemy(app)
 
 
+# -----------------------------------------------------------------
+# Database Article
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200))
     body = db.Column(db.Text)
     author = db.Column(db.String(50))
+    category = db.Column(db.String(50))
+    create_date=db.Column(db.Date())
 
-    def __init__(self, title, body, author):
+    def __init__(self, title, body, author,category):
         self.title = title
         self.body = body
         self.author = author
+        self.category=category
+        self.create_date=date.today()
 
+# -----------------------------------------------------------------
+# Database user
 
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -39,7 +48,7 @@ class Users(db.Model):
 
 
 
-# Index
+# Home page
 @app.route('/')
 def index():
     return render_template('home.html')
@@ -90,7 +99,7 @@ class RegisterForm(Form):
 # User Register
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    db.create_all()
+    db.create_all()       #it create table if already not exist
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
         name = form.name.data
@@ -111,7 +120,6 @@ def register():
 # User Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    db.create_all()
     if request.method == 'POST':
         username = request.form['username']
         password_candidate = request.form['password']
@@ -172,18 +180,21 @@ def dashboard():
 class ArticleForm(Form):
     title = StringField('Title', [validators.Length(min=1, max=200)])
     body = TextAreaField('Body', [validators.Length(min=30)])
+    category = StringField('Category', [validators.Length(min=3,max=40)])
 
 
 # Add Article
 @app.route('/add_article', methods=['GET', 'POST'])
 @is_logged_in
 def add_article():
+    db.create_all()
     form = ArticleForm(request.form)
     if request.method == 'POST' and form.validate():
         title = form.title.data
         body = form.body.data
+        category = form.category.data
 
-        article = Article(title=title, body=body, author=session['username'])
+        article = Article(title=title, body=body, author=session['username'],category=category)
         db.session.add(article)
         db.session.commit()
 
